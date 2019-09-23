@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- 开启注解，扫描service包 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.vi.tmall.service" />
+
+	<!-- 配置数据源 -->
+	<context:property-placeholder location="classpath:dbConfig.properties" />
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<!-- mybatis相关配置 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="typeAliasesPackage" value="com.vi.tmall.pojo"/>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+		 <!-- 支持分页插件 PageHelper-->
+		 <property name="plugins">
+		 	<array>
+		 		<bean class="com.github.pagehelper.PageInterceptor">
+		 			<property name="properties">
+		 				<value></value>
+		 			</property>
+		 		</bean>
+		 	</array>
+		 </property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.vi.tmall.mapper"/>
+	</bean>
+</beans>

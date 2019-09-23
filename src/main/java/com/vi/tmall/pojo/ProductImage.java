@@ -1,0 +1,43 @@
+package com.vi.tmall.pojo;
+
+public class ProductImage {
+    private Integer id;
+
+    private Integer pid;
+
+    private String type;
+    //添加一个非数据库字段
+    private Product product;
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+}
