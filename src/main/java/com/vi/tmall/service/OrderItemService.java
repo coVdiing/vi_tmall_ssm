@@ -5,12 +5,12 @@ import java.util.List;
 import com.vi.tmall.pojo.OrderItem;
 
 public interface OrderItemService {
-	//ÔöÉ¾²é¸ÄÒ»Ì×
+	//å¢åˆ æ”¹æŸ¥ä¸€å¥—
 	void add(OrderItem orderItem);
 	void delete(int id);
 	void update(OrderItem orderItem);
 	OrderItem get(int id);
 	List<OrderItem> list(int oid);
-	//Ìî³äOrderItemÖĞµÄÉÌÆ·
+	//åœ¨orderItemä¸­å¡«å……productå¯¹è±¡
 	void fill(OrderItem orderItem);
 }
