@@ -11,7 +11,7 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 
 public class MybatisGenerator {
 	public static void main(String[] args) throws Exception{
-		 System.out.println("¿ªÊ¼ÄæÏò£¡£¡£¡");
+		 System.out.println("å¼€å§‹é€†å‘å·¥ç¨‹ï¼");
 	        List<String> warnings = new ArrayList<String>();
 	        boolean overwrite = true;
 	        InputStream is= MybatisGenerator.class.getClassLoader().getResource("generator.xml").openStream();
@@ -21,6 +21,6 @@ public class MybatisGenerator {
 	        DefaultShellCallback callback = new DefaultShellCallback(overwrite);
 	        MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 	        myBatisGenerator.generate(null);
-	        System.out.println("Éú³É´úÂë³É¹¦");
+	        System.out.println("å®Œæˆï¼");
 	}
 }
