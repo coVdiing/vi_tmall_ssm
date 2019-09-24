@@ -32,21 +32,21 @@ public class ProductImageController {
 	CategoryService categoryService; 
 	
 	/**
-	 * Õ¹Ê¾Í¼Æ¬Êı¾İ
-	 * @param pid Í¼Æ¬ËùÊôµÄ²úÆ··ÖÀà
+	 * å±•ç¤ºäº§å“å›¾ç‰‡
+	 * @param pid å¯¹åº”çš„ product ID
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("admin_productImage_list")
 	public String list(int pid,Model model) {
-		//²éÑ¯Product¶ÔÏó
+		//è·å–å¯¹åº”IDçš„productå¯¹è±¡
 		Product product = productService.get(pid);
 		Category category = categoryService.get(product.getCid());
 		product.setCategory(category);
-		//²é³öpidµÄ²úÆ·µÄÁ½ÖÖ²»Í¬ÀàĞÍµÄÍ¼Æ¬£¬·Ö±ğ±£´æ
+		//æ ¹æ®typeç±»å‹åˆ›å»ºå¯¹åº”çš„ProductImageé›†åˆ
 		List<ProductImage> type_single = productImageService.list(pid, ProductImageService.type_single);
 		List<ProductImage> type_detail = productImageService.list(pid, ProductImageService.type_detail);
-		System.out.println("²éµ½µÄÍ¼Æ¬:"+type_single);
+		//System.out.println("è°ƒè¯•:"+type_single);
 		model.addAttribute("product", product);
 		model.addAttribute("type_single",type_single);
 		model.addAttribute("type_detail",type_detail);
@@ -54,22 +54,22 @@ public class ProductImageController {
 	}
 	
 	/**
-	 * Ìí¼ÓÍ¼Æ¬
-	 * @param productImage ÓÃÓÚ½ÓÊÕ×¢ÈëµÄpid,type
-	 * @param image ÓÃÓÚ½ÓÊÕÉÏ´«µÄÍ¼Æ¬
+	 * æ·»åŠ å›¾ç‰‡
+	 * @param productImage æ¥æ”¶pidçš„æ³¨å…¥
+	 * @param uploadedImageFile  æ¥æ”¶imageæ–‡ä»¶çš„æ³¨å…¥
 	 * @return
 	 */
 	@RequestMapping("admin_productImage_add")
 	public String add(ProductImage productImage,UploadedImageFile uploadedImageFile,HttpSession session){
 		productImageService.add(productImage);
-		//ÎªÉÏ´«ÎÄ¼ş×¼±¸Â·¾¶
+		//å‡†å¤‡æ–‡ä»¶è·¯å¾„
 		File imageFolder;
 		File imageFolder_small = null;
 		File imageFolder_middle = null;
 		String fileName = productImage.getId()+".jpg";
-		//¸ù¾İÀàĞÍÉú³ÉÂ·¾¶
+		//åˆ¤æ–­å›¾ç‰‡ç±»å‹
 		if(productImage.getType().equals(ProductImageService.type_single)){
-			//Èç¹ûÊÇµ¥¸öÍ¼Æ¬µÄÀàĞÍ
+			//å¦‚æœæ˜¯å•ä¸ªå›¾ç‰‡ç±»å‹
 			imageFolder = new File(session.getServletContext().getRealPath("/img/productSingle"));
 			imageFolder_small = new File(session.getServletContext().getRealPath("/img/productSingle_small"));
 			imageFolder_middle = new File(session.getServletContext().getRealPath("/img/productMiddle"));
@@ -77,18 +77,17 @@ public class ProductImageController {
 			imageFolder = new File(session.getServletContext().getRealPath("/img/productDetail"));
 		}
 			File file = new File(imageFolder,fileName);
-			//Èç¹ûÎÄ¼ş¼Ğ²»´æÔÚ£¬´´½¨
+			//å¦‚æœæ–‡ä»¶å¤¹ä¸å­˜åœ¨ï¼Œåˆ›å»ºå…¶
 			if(!file.getParentFile().exists())
 				file.getParentFile().mkdirs();
-			//½«Í¼Æ¬ÄÚÈİ´Óimage¶ÔÏó×ªÈëµ½fileÖĞ
+			//å°†ä¸Šä¼ çš„å›¾ç‰‡å†™å…¥åˆ°é¡¹ç›®è·¯å¾„ä¸‹çš„æ–‡ä»¶ä¸­
 			try {
 				uploadedImageFile.getImage().transferTo(file);
-				//°Ñfile×ª³ÉÕæÕıµÄjpgÎÄ¼ş£¬¶ø·ÇÖ»ÊÇjpgºó×ºµÄÎÄ¼ş
+				//è°ƒç”¨å·¥å…·ç±»ï¼Œå°†å›¾ç‰‡è½¬æ¢æˆçœŸæ­£çš„jpgå›¾ç‰‡ï¼Œè€Œéä»…ä»…æ˜¯.jpgåç¼€çš„æ–‡ä»¶
 				BufferedImage img = ImageUtil.change2jpg(file);
 				ImageIO.write(img, "jpg", file);
 				
-				//Èç¹ûÉÏ´«µÄÊÇµ¥¸öÍ¼Æ¬µÄÀàĞÍ£¬°ÑÕı³£´óĞ¡µÄÍ¼Æ¬£¬
-	            // ¸Ä±ä´óĞ¡Ö®ºó£¬·Ö±ğ¸´ÖÆµ½productSingle_middleºÍproductSingle_smallÄ¿Â¼ÏÂ
+				//å¦‚æœå›¾ç‰‡ç±»å‹æ˜¯å•ä¸ªç±»å‹çš„ï¼Œå°†å›¾ç‰‡å°ºå¯¸è¿›è¡Œè°ƒæ•´ï¼Œç”Ÿæˆä¸­å°å‹çš„å¯¹åº”å›¾ç‰‡
 				if(productImage.getType().equals(ProductImageService.type_single)){
 					File file_small = new File(imageFolder_small,fileName);
 	                File file_middle = new File(imageFolder_middle,fileName);
@@ -103,20 +102,20 @@ public class ProductImageController {
 	}
 	
 	/**
-	 * É¾³ı¹¦ÄÜ
-	 * @param id Í¨¹ıproductImageµÄid½øĞĞÉ¾³ı
+	 * åˆ é™¤å›¾ç‰‡
+	 * @param id productImageå¯¹åº”id
 	 * @return
 	 */
 	@RequestMapping("admin_productImage_delete")
 	public String delete(int id,HttpSession session) {
-		//Í¨¹ıidÈ·¶¨Í¼Æ¬ÀàĞÍ
+		//æ ¹æ®idè·å–å¯¹è±¡
 		ProductImage productImage = productImageService.get(id);
 		String type = productImage.getType();
 		int pid = productImage.getPid();
-		//ÔÚÊı¾İ¿âÖĞ¶Ô¼ÇÂ¼½øĞĞÉ¾³ı
+		//æ ¹æ®idåˆ é™¤æ•°æ®åº“ä¸­çš„è®°å½•
 		productImageService.delete(id);
 		String fileName = id+".jpg";
-		//ÔÚÎÄ¼şÏµÍ³ÖĞ½«¶ÔÓ¦µÄÍ¼Æ¬É¾³ı
+		//åˆ é™¤æ•°æ®åº“ä¸­çš„è®°å½•ä»¥åéœ€è¦æ ¹æ®å›¾ç‰‡ç±»å‹åˆ é™¤å…¶å¯¹åº”çš„æ–‡ä»¶
 		if(type.equals("type_detail")){
 			File file = new File(session.getServletContext().getRealPath("img/productDetail"),fileName);
 			file.delete();
