@@ -45,8 +45,8 @@ public class ProductServiceImpl implements ProductService {
         Product product = productMapper.selectByPrimaryKey(id);
         int cid = product.getCid();
         Category category = categoryService.get(cid);
-        System.out.println("cid===>" + cid);//µ÷ÊÔ´úÂë
-        System.out.println("category====>" + category.getName());//µ÷ÊÔ´úÂë
+        //System.out.println("è°ƒè¯•cid===>" + cid);
+       // System.out.println("è°ƒè¯•category====>" + category.getName());
         product.setCategory(category);
         setFirstProductImage(product);
         return product;
@@ -54,15 +54,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> list(int cid) {
-        //¸ù¾İCategory id½øĞĞ²éÑ¯
+        //æ ¹æ®Category idè·å–Productå¯¹è±¡é›†åˆ
         ProductExample example = new ProductExample();
         example.createCriteria().andCidEqualTo(cid);
-        //°´ÕÕid½µĞòÅÅÁĞ
+        //æŸ¥è¯¢ç»“æœæŒ‰ç…§product idå€’åº
         example.setOrderByClause("id desc");
         Category category = categoryService.get(cid);
 
         List<Product> list = productMapper.selectByExample(example);
-        //ÔÚÕÒµ½ÁË¶ÔÓ¦µÄÊı¾İÖ®ºó£¬¸øËûÃÇ¼ÓÉÏ¶ÔÓ¦µÄÍ¼Æ¬
+        //ç»™å¯¹åº”çš„Productå¯¹è±¡è®¾ç½®firstProductImageå±æ€§å’Œcategoryå±æ€§
         setFirstProductImage(list);
         for (Product product : list)
             product.setCategory(category);
@@ -70,14 +70,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * ¸øproduct¶ÔÏó¸³ÉÏ¶ÔÓ¦µÄProductImage
+     * ç»™productå¯¹è±¡è®¾ç½®å¯¹åº”çš„productImageå¯¹è±¡
      */
     @Override
     public void setFirstProductImage(Product product) {
         List<ProductImage> plist =
                 ProductImageService.list(product.getId(), ProductImageService.type_single);
         if (!plist.isEmpty()) {
-            //Èç¹û½á¹û¼¯·Ç¿Õ£¬È¡³öÆäÖĞµÚÒ»ÕÅÍ¼Æ¬£¬ÉèÖÃÎªproductµÄproductImage¶ÔÏó
+            //å°†æŸ¥è¯¢åˆ°çš„å›¾ç‰‡é›†åˆä¸­çš„ç¬¬ä¸€å¼ å›¾ç‰‡è®¾ç½®ä¸ºfirstProductImage
             product.setFirstProductImage(plist.get(0));
         }
     }
@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * Îª·ÖÀàÌî³ä²úÆ·¼¯ºÏ
+     *  ç»™productå¯¹è±¡å¡«å……categoryå¯¹è±¡
      *
      * @param category
      */
@@ -99,7 +99,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * Îª¶à¸ö·ÖÀàÌî³ä²úÆ·¼¯ºÏ
+     * æ‰¹é‡å¡«å……categoryå¯¹è±¡
      *
      * @param categories
      */
@@ -110,7 +110,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * Îª¶à¸ö·ÖÀàÌî³äÍÆ¼ö²úÆ·¼¯ºÏ£¬¼´°Ñ·ÖÀàÏÂµÄ²úÆ·£¬°´ÕÕ8¸öÎªÒ»ĞĞ£¬²ğ³É¶àĞĞ£¬ÒÔÀûÓÚºóĞøÒ³ÃæÉÏ½øĞĞÏÔÊ¾
+     * å¡«å……æ¨èäº§å“åˆ—è¡¨
      *
      * @param categories
      */
