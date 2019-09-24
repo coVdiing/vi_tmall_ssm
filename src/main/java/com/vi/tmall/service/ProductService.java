@@ -6,7 +6,7 @@ import com.vi.tmall.pojo.Category;
 import com.vi.tmall.pojo.Product;
 
 public interface ProductService {
-    //增删改查
+    //澧炲垹鏀规煡
     void add(Product product);
 
     void delete(int id);
@@ -19,7 +19,7 @@ public interface ProductService {
 
     void setFirstProductImage(Product p);
 
-    //新增三个方法
+    //鏂板涓変釜鏂规硶锛岀粰Category璁剧疆瀵瑰簲鐨刾roduct
     void fill(Category category);
 
     void fill(List<Category> categories);
