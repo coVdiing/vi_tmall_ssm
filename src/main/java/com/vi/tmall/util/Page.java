@@ -1,117 +1,120 @@
 package com.vi.tmall.util;
 
 /**
- * ·ÖÒ³¹¤¾ßÀà
- * 
- * @author vi
+ * åˆ†é¡µå·¥å…·ç±»ï¼Œå®é™…ä¸Šä½¿ç”¨äº†PageHelperå°±ä¸éœ€è¦è¿™ä¸ªäº†ã€‚
+ * ä¸è¿‡å¯ä»¥ç†Ÿæ‚‰ä¸€ä¸‹æ‰‹åŠ¨åˆ†é¡µçš„æ“ä½œ
  *
+ * @author vi
  */
 public class Page {
-	private int start; 	// ¿ªÊ¼Êı¾İµÄË÷Òı
-	private int count;	// µ¥Ò³µÄ¼ÇÂ¼Êı
-	private int total;	// ×Ü¹²µÄÊı¾İÁ¿
-	private String param;	//×Ô¶¨Òå²ÎÊı
+    private int start;    // å¼€å§‹æŸ¥è¯¢çš„è®°å½•åºå·
+    private int count;    // æ¯é¡µå±•ç¤ºå‡ æ¡æ•°æ®
+    private int total;    // æ€»è®°å½•æ•°
+    private String param;    //è‡ªå®šä¹‰å‚æ•°ï¼Œå¯ä»¥åŠ è½½
+
+    public Page(int start, int count) {
+        super();
+        this.start = start;
+        this.count = count;
+    }
+
+    public Page() {
+        this.start = 0;
+        this.count = 5;
+    }
+
+    /**
+     * æ˜¯å¦æœ‰ä¸Šä¸€é¡µ
+     *
+     * @return
+     */
+    public boolean isHasPrevious() {
+        return !(start == 0);
+    }
+
+    /**
+     * æ˜¯å¦æœ‰ä¸‹ä¸€é¡µ
+     *
+     * @return
+     */
+    public boolean isHasNext() {
+        return !(start >= getLast());
+    }
+
+    /**
+     * è·å–æœ€åä¸€é¡µçš„å¼€å§‹è®°å½•åºå·
+     *
+     * @return
+     */
+    public int getLast() {
+        int last;
+        if (total % count == 0)
+            last = total - count;
+        else {
+            last = total - total % count;
+        }
+        return last < 0 ? 0 : last;
+    }
+
+    /**
+     * æ€»é¡µæ•°
+     */
+    public int getTotalPage() {
+        int totalPage;
+        if (total % count == 0)
+            totalPage = total / count;
+        else
+            totalPage = total / count + 1;
+        if (totalPage == 0)
+            totalPage = 1;
+        return totalPage;
+    }
+
 	/**
-	 * Ìá¹©Ò»¸ö¹¹Ôì·½·¨
-	 * @param start
-	 * @param count
-	 */
-	public Page(int start,int count) {
-		super();
-		this.start = start;
-		this.count = count;
-	}
-	
-	public Page() {
-		this.start = 0;
-		this.count = 5;
-	}
-	
-	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞÉÏÒ»Ò³
+	 * è®¡ç®—å½“å‰é¡µçš„é¡µç 
 	 * @return
 	 */
-	public boolean isHasPrevious() {
-		return !(start == 0);
-	}
-	
-	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞÏÂÒ»Ò³
-	 * @return
-	 */
-	public boolean isHasNext() {
-		return !(start >= getLast());
-	}
-	
-	/**
-	 * ¼ÆËãµÃµ½Î²Ò³µÄË÷Òı
-	 * @return
-	 */
-	public int getLast() {
-		int last;
-		if(total%count == 0)  
-			last = total - count;
-		else {
-			last = total - total%count;
-		}
-		return last<0?0:last;	
-	}
-	
-	/**
-	 * ¼ÆËã×ÜÒ³Êı
-	 */
-	public int getTotalPage() {
-		int totalPage;
-		if(total%count == 0)
-			totalPage =  total/count;
-		else 
-			totalPage =  total/count+1;
-		if(totalPage == 0)
-			totalPage = 1;
-		return totalPage;
-	}
-	
-	//getter,setter
-	public int getStart() {
-		return start;
-	}
+    public int getCurrent() {
+        int current;
+        if (start % count == 0)
+            current = start / count + 1;
+        else
+            current = start / count + 2;
+        return current == 0 ? 1 : current;
+    }
 
-	public void setStart(int start) {
-		this.start = start;
-	}
+    //getter,setter
+    public int getStart() {
+        return start;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public void setStart(int start) {
+        this.start = start;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	public int getTotal() {
-		return total;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-	public void setTotal(int total) {
-		this.total = total;
-	} 
-	
-	public int getCurrent() {
-		int current;
-		if(start%count == 0)
-			current = start/count+1;
-		else
-			current = start/count + 2;
-		return current==0?1:current;
-	}
+    public int getTotal() {
+        return total;
+    }
 
-	public String getParam() {
-		return param;
-	}
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
-	public void setParam(String param) {
-		this.param = param;
-	}
+    public String getParam() {
+        return param;
+    }
 
-	
+    public void setParam(String param) {
+        this.param = param;
+    }
+
+
 }
