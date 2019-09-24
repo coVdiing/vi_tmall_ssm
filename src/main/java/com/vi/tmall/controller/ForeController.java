@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
- * 对应前台路径的控制器
+ * 瀵瑰簲鍓嶅彴璺緞鐨勬帶鍒跺櫒
  */
 @Controller
 @RequestMapping("")
