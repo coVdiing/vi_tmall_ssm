@@ -25,11 +25,11 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 	ProductService productService;
 	
 	/**
-	 * ³õÊ¼»¯£¬½«product¶ÔÓ¦µÄpropertyValueÔÚÊı¾İ¿âÖĞ²åÈëÊı¾İ
+	 * å¯¹productå¯¹åº”çš„å±æ€§åˆå§‹åŒ–
 	 */
 	@Override
 	public void init(Product product) {
-		//Í¨¹ıproduct»ñÈ¡category id ÔÙ»ñÈ¡¶ÔÓ¦ÊôĞÔ¼¯ºÏ
+		//Í¨æ ¹æ®productå¯¹åº”çš„categoryæŸ¥è¯¢å¯¹åº”å±æ€§
 		List<Property> list = propertyService.list(product.getCid());
 		for(Property property : list) {
 			PropertyValue propertyValue = get(product.getId(),property.getId());
@@ -37,14 +37,14 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 				propertyValue = new PropertyValue();
 				propertyValue.setPid(product.getId());
 				propertyValue.setPtid(property.getId());
-				//²åÈëÊı¾İ¿â
+				//åœ¨æ•°æ®åº“ä¸­æ’å…¥è¯¥æ•°æ®
 				propertyValueMapper.insert(propertyValue);
 			}
 		}
 	}
 	
 	/**
-	 * ¸ù¾İpid,ptid»ñÈ¡µ¥¸öpropertyValue¶ÔÏó
+	 * æ ¹æ®pid,ptidæŸ¥è¯¢propertyValueå¯¹è±¡
 	 */
 	@Override
 	public PropertyValue get(int pid, int ptid) {
@@ -57,7 +57,7 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 	}
 	
 	/**
-	 * ·µ»Ø½«product¶ÔÓ¦µÄpropertyValue
+	 * éå†productå¯¹åº”çš„propertyValueå¯¹è±¡
 	 */
 	@Override
 	public List<PropertyValue> list(int pid) {
@@ -72,7 +72,7 @@ public class PropertyValueServiceImpl implements PropertyValueService {
 	}
 	
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°propertyValue
 	 */
 	@Override
 	public void update(PropertyValue propertyValue) {
