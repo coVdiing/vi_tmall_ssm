@@ -12,12 +12,12 @@ public interface OrderService {
 	String finish = "finish";
 	String delete = "delete";
 	
-	//ÔöÉ¾²é¸ÄÒ»Ì×
+	//å¢åˆ æŸ¥æ”¹ä¸€å¥—
 	void add(Order order);
 	void delete(int id);
 	void update(Order order);
 	Order get(int id);
 	List<Order> list();
-	//½«¶ÔÓ¦µÄUserºÍOrderItemÌî³ä½øOrder
+	//åœ¨Orderä¸­å¡«å……OrderItemå¯¹è±¡é›†åˆ
 	void fill(Order order);
 }
