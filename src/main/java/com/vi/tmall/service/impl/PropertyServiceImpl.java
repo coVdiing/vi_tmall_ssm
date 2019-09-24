@@ -19,11 +19,11 @@ public class PropertyServiceImpl implements PropertyService{
 	
 	@Override
 	public List<Property> list(int cid) {
-		//¸ù¾İCategory idÀ´²éÕÒ¶ÔÓ¦µÄproperty
+		//æ¡ä»¶æŸ¥è¯¢
 		PropertyExample example = new PropertyExample();
-		//²éÑ¯Ìõ¼ş
+		//æ ¹æ®category id æŸ¥è¯¢å¯¹åº”å±æ€§
 		example.createCriteria().andCidEqualTo(cid);
-		//¸ù¾İidµ¹Ğò
+		//æŸ¥è¯¢ç»“æœæ ¹æ®property id å€’åº
 		example.setOrderByClause("id desc");
 		List<Property> props = propertyMapper.selectByExample(example);
 		return props;
