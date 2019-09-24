@@ -32,9 +32,9 @@ public class ProductImageServiceImpl implements ProductImageService {
 	@Override
 	public List<ProductImage> list(int pid, String type) {
 		ProductImageExample example = new ProductImageExample();
-		//根据type条件和pid进行查询
+		//鏍规嵁绫诲瀷鍜屼骇鍝乮d鏉′欢鏌ヨ
 		example.createCriteria().andTypeEqualTo(type).andPidEqualTo(pid);
-		//查询的结果按id倒序排列
+		//鎸夌収id灏嗘煡璇㈢粨鏋滃�掑簭
 		example.setOrderByClause("id desc");
 		return productImageMapper.selectByExample(example);
 	}
