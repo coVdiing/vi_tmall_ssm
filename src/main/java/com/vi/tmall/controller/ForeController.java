@@ -34,7 +34,9 @@ public class ForeController {
     @RequestMapping("forehome")
     public String home(Model model) {
         List<Category> categories = categoryService.list();
+        //填充分类对应的产品
         productService.fill(categories);
+        //填充推荐产品集合
         productService.fillByRow(categories);
         return "fore/home";
     }
