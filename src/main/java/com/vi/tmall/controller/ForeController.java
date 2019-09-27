@@ -1,6 +1,7 @@
 package com.vi.tmall.controller;
 
 import com.vi.tmall.pojo.Category;
+import com.vi.tmall.pojo.Product;
 import com.vi.tmall.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class ForeController {
     public String home(Model model) {
         List<Category> categories = categoryService.list();
         productService.fill(categories);
-        productService.fill(categories);
+        productService.fillByRow(categories);
         return "fore/home";
     }
 }
