@@ -38,6 +38,7 @@ public class ForeController {
         productService.fill(categories);
         //填充推荐产品集合
         productService.fillByRow(categories);
+        model.addAttribute("categories",categories);
         return "fore/home";
     }
 }
