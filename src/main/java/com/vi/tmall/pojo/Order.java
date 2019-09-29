@@ -31,15 +31,14 @@ public class Order {
     private Integer uid;
 
     private String status;
+
+    private User user;	//éæ•°æ®åº“å­—æ®µï¼Œè®¢å•å¯¹åº”çš„ç”¨æˆ·å¯¹è±¡
     
-    //¸øOrderÀàÌí¼ÓËÄ¸ö·ÇÊı¾İ¿â×Ö¶Î
-    private User user;	//¶©µ¥¶ÔÓ¦µÄÓÃ»§
+    private float total; //éæ•°æ®åº“å­—æ®µï¼Œè®¢å•æ€»é‡‘é¢ï¼Œä¹‹åæµè§ˆè®¢å•ç”¨äºé¡µé¢å±•ç¤º
     
-    private float total; //¶©µ¥×Ü½ğ¶î
+    private int totalNumber; //è®¢å•ä¸­äº§å“æ•°é‡
     
-    private int totalNumber; //¶©µ¥ÖĞÉÌÆ·×ÜÊıÁ¿
-    
-    private List<OrderItem> orderItems;	//¶©µ¥ÖĞÏêÏ¸µÄ¶©µ¥Ïî
+    private List<OrderItem> orderItems;	//è®¢å•ä¸­åŒ…å«çš„è®¢å•é¡¹é›†åˆ
     
     public Integer getId() {
         return id;
@@ -177,30 +176,30 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 	
-	//ÅĞ¶Ï¶©µ¥×´Ì¬
+	//ï¿½Ğ¶Ï¶ï¿½ï¿½ï¿½×´Ì¬
 	public String getStatusDesc() {
 		String desc = "";
 		switch(status) {
 			case OrderService.waitPay :
-				desc = "´ıÖ§¸¶";
+				desc = "å¾…ä»˜æ¬¾";
 				break;
 			case OrderService.waitDelivery :
-				desc = "´ı·¢»õ";
+				desc = "å¾…å‘è´§";
 				break;
 			case OrderService.waitConfirm :
-				desc = "´ıÈ·ÈÏ";
+				desc = "å¾…ç¡®è®¤";
 				break;
 			case OrderService.waitReview :
-				desc = "´ıÆÀ¼Û";
+				desc = "å¾…è¯„è®º";
 				break;
 			case OrderService.finish :
-				desc = "Íê³É";
+				desc = "å·²ç»“æŸ";
 				break;
 			case OrderService.delete :
-				desc = "¹Ø±Õ";
+				desc = "å·²åˆ é™¤";
 				break;
 			default:
-				desc = "Î´Öª";
+				desc = "æœªçŸ¥";
 		}
 		return desc;
 	}
