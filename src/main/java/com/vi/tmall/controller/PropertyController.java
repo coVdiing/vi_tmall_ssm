@@ -15,7 +15,7 @@ import com.vi.tmall.pojo.Property;
 import com.vi.tmall.service.CategoryService;
 import com.vi.tmall.service.PropertyService;
 /**
- * 属性相关的控制处理
+ * 灞炴�х浉鍏崇殑鎺у埗澶勭悊
  * @author vi
  *
  */
@@ -55,10 +55,10 @@ public class PropertyController {
 	
 	@RequestMapping("admin_property_edit")
 	public String edit(int id,Model model) {
-		//根据页面传过来的id得到property对象
+		//鏍规嵁椤甸潰浼犺繃鏉ョ殑id寰楀埌property瀵硅薄
 		Property property = propertyService.get(id);
 		Category category = categoryService.get(property.getCid());
-		//把property通过request传到下个页面
+		//鎶妏roperty閫氳繃request浼犲埌涓嬩釜椤甸潰
 		model.addAttribute("property",property);
 		model.addAttribute("category",category);
 		return "admin/editProperty";
