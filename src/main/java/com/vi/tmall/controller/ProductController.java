@@ -23,18 +23,18 @@ public class ProductController {
 	CategoryService categoryService;
 	
 	/**
-	 * ¸ù¾İ·ÖÀàÕ¹Ê¾²úÆ·ÁĞ±í
-	 * @param page µ±Ç°·ÃÎÊµÄÒ³Âë
-	 * @param cid µ±Ç°·ÃÎÊµÄCategory id
+	 * äº§å“æ•°æ®å±•ç¤º
+	 * @param page å½“å‰é¡µç ï¼Œé»˜è®¤å€¼ç¬¬ä¸€é¡µ
+	 * @param cid ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Êµï¿½Category id
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("admin_product_list")
 	public String list(@RequestParam(value="page",defaultValue="1") int page,int cid,Model model){
-		//´ÓµÚpageÒ³¿ªÊ¼²éÑ¯£¬Ã¿Ò³²éÑ¯ÎåÌõ¼ÇÂ¼
+		//å¯¹æŸ¥è¯¢è¿›è¡Œåˆ†é¡µ
 		PageHelper.startPage(page,5);
 		List<Product> productList = productService.list(cid);
-		//½«²éÑ¯µÄ½á¹û´æÈëpageInfo£¬ÒÔ±ãÔÚjspÒ³ÃæÊµÏÖ·ÖÒ³£¬·ÖÒ³Ê±Ã¿´ÎÏÔÊ¾µÄÒ³ÂëÊıÁ¿ÊÇ5
+		//å¯¼èˆªé¡µç ä¸€å…±5é¡µ
 		PageInfo<Product> pageInfo = new PageInfo<>(productList,5);
 		Category category = categoryService.get(cid);
 		model.addAttribute("pageInfo",pageInfo);
