@@ -9,7 +9,7 @@ public class PropertyValue {
 
     private String value;
     
-    //Ìí¼Ó·ÇÊı¾İ¿â×Ö¶Î£¬ÓÃÓÚÖ®ºó²éÑ¯Êı¾İ£¬Õ¹Ê¾Êı¾İ
+    //æ·»åŠ éæ•°æ®åº“å­—æ®µï¼Œå¯¹åº”çš„å±æ€§å¯¹è±¡
     private Property property;
     
     public Integer getId() {
