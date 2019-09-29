@@ -6,7 +6,7 @@ public class ProductImage {
     private Integer pid;
 
     private String type;
-    //添加一个非数据库字段
+    //娣诲姞闈炴暟鎹簱瀛楁锛屽搴旂殑浜у搧瀵硅薄
     private Product product;
     
     public Integer getId() {
