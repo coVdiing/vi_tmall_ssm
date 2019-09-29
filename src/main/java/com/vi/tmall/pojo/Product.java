@@ -18,9 +18,9 @@ public class Product {
     private Integer cid;
 
     private Date createDate;
-    //非数据库字段
+    //娣诲姞闈炴暟鎹簱瀛楁锛屼骇鍝佸搴旂殑鍒嗙被瀵硅薄
     private Category category;
-    //对应的产品第一张图片
+    //娣诲姞闈炴暟鎹簱瀛楁锛屼骇鍝佸搴旂殑鍥剧墖瀵硅薄
     private ProductImage firstProductImage;
 
     public Integer getId() {
