@@ -7,7 +7,7 @@ public class Property {
 
     private String name;
     
-    //添加非数据库字段
+    //娣诲姞闈炴暟鎹簱瀛楁锛屽搴旂殑鍒嗙被瀵硅薄
     private Category category;
     
     public Integer getId() {
