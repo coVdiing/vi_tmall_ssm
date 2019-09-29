@@ -20,13 +20,13 @@ public class UserController {
 	UserService userService;
 	
 	/**
-	 * 用户数据是核心数据，只提供查询方法，注册和修改用户都交给前台
+	 * 鐢ㄦ埛鏁版嵁灞曠ず
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("admin_user_list")
 	public String list(Model model,@RequestParam(value="page",defaultValue="1") int page) {
-		//分页
+		//鍒嗛〉鏌ヨ
 		PageHelper.startPage(page,5);
 		List<User> list = userService.list();
 		PageInfo<User> pageInfo = new PageInfo<>(list,5);
