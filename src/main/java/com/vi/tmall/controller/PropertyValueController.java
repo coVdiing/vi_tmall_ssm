@@ -26,8 +26,8 @@ public class PropertyValueController {
 
 	
 	/**
-	 * ½øÈëÊôĞÔÖµ±à¼­Ò³Ãæ
-	 * @param pid ²úÆ·id
+	 * è·³è½¬åˆ°å±æ€§ç¼–è¾‘é¡µ
+	 * @param pid ï¿½ï¿½Æ·id
 	 * @param model
 	 * @return
 	 */
@@ -35,9 +35,9 @@ public class PropertyValueController {
 	public String edit(int pid, Model model) {
 		Product product = productService.get(pid);
 		System.out.println("pro id:"+product.getId()+",cate name:"+product.getCategory().getName());
-		//Ê×ÏÈ¶ÔÊôĞÔÖµ½øĞĞ³õÊ¼»¯
+		//å¯¹å±æ€§å€¼åˆå§‹åŒ–
 		propertyValueService.init(product);
-		//³õÊ¼»¯Ö®ºó´ÓÊı¾İ¿âÈ¡Öµ
+		//æ ¹æ®äº§å“idæŸ¥è¯¢å¯¹åº”çš„å±æ€§å€¼é›†åˆ
 		List<PropertyValue> list = propertyValueService.list(pid);
 		model.addAttribute("product",product);
 		model.addAttribute("list",list);
