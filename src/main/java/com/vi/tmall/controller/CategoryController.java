@@ -30,7 +30,7 @@ public class CategoryController {
 	CategoryService cs;
 
 	/**
-	 * ·ÖÀàÏêÇé
+	 * åˆ†ç±»å±•ç¤º
 	 * 
 	 * @param model
 	 * @param page
@@ -47,7 +47,7 @@ public class CategoryController {
 	}
 
 	/**
-	 * Ìí¼Ó·ÖÀàÊôĞÔ
+	 * æ·»åŠ åˆ†ç±»
 	 * 
 	 * @param category
 	 * @param session
@@ -69,7 +69,7 @@ public class CategoryController {
 	}
 
 	/**
-	 * ¸ù¾İidµ¥¸ö²éÕÒ·ÖÀà
+	 * æ ¹æ®åˆ†ç±»idè·³è½¬åˆ°åˆ†ç±»ç¼–è¾‘é¡µé¢
 	 * 
 	 * @param id
 	 * @return
@@ -82,7 +82,7 @@ public class CategoryController {
 	}
 
 	/**
-	 * ¸üĞÂ
+	 * æ›´æ–°åˆ†ç±»ä¿¡æ¯
 	 * 
 	 * @param category
 	 * @return
