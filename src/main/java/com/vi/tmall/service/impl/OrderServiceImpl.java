@@ -35,14 +35,14 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void update(Order order) {
-		// Ò»¶¨ÒªÓÃÕâ¸öselectiveµÄ¸üĞÂ·½·¨£¬ºÜÖØÒª!!!
 		orderMapper.updateByPrimaryKeySelective(order);
 	}
 
 	@Override
 	public Order get(int id) {
-		// ´ÓÊı¾İ¿â»ñÈ¡¶ÔÓ¦µÄorder¶ÔÏó
+		// æ ¹æ®idæŸ¥è¯¢è®¢å•
 		Order order = orderMapper.selectByPrimaryKey(id);
+		//å¡«å……è®¢å•å¯¹åº”çš„è®¢å•é¡¹é›†åˆ
 		fill(order);
 		return order;
 	}
@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	/**
-	 * order¶ÔÏóÖĞÃ»ÓĞuser,orderItems,total,totalNumber,ÎÒÃÇÔÚÏÂÃæ°ÑÕâĞ©Êı¾İ¼Ó½øÈ¥£¬·½±ãÖ®ºó¿ØÖÆ²ãµÄ²Ù×÷
+	 * å¡«å……è®¢å•ä¸­çš„å¯¹åº”å†…å®¹ã€‚total:æ€»é‡‘é¢ï¼ŒtotalNumber:å•†å“æ€»æ•°ï¼ŒorderItems:è®¢å•é¡¹é›†åˆ
 	 */
 	@Override
 	public void fill(Order order) {
