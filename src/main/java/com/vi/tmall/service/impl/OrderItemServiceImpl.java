@@ -52,7 +52,7 @@ public class OrderItemServiceImpl implements OrderItemService{
 	}
 	
 	/**
-	 * 在orderItem对象中填充对应的product
+	 * 濉厖璁㈠崟椤逛腑瀵瑰簲鐨刾roduct瀵硅薄
 	 */
 	@Override
 	public void fill(OrderItem orderItem) {
