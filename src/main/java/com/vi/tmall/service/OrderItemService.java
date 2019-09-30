@@ -13,4 +13,6 @@ public interface OrderItemService {
 	List<OrderItem> list(int oid);
 	//在orderItem中填充product对象
 	void fill(OrderItem orderItem);
+	//根据产品获取销量
+	int getSaleCount(int pid);
 }
