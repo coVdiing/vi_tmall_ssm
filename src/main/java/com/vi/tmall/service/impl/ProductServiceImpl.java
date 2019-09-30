@@ -3,6 +3,7 @@ package com.vi.tmall.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vi.tmall.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,6 @@ import com.vi.tmall.pojo.Category;
 import com.vi.tmall.pojo.Product;
 import com.vi.tmall.pojo.ProductExample;
 import com.vi.tmall.pojo.ProductImage;
-import com.vi.tmall.service.CategoryService;
-import com.vi.tmall.service.ProductImageService;
-import com.vi.tmall.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -23,6 +21,10 @@ public class ProductServiceImpl implements ProductService {
     ProductImageService ProductImageService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    OrderItemService orderItemService;
+    @Autowired
+    ReviewService reviewService;
 
     @Override
     public void add(Product product) {
@@ -129,5 +131,23 @@ public class ProductServiceImpl implements ProductService {
             category.setProductsByRow(productByRow);
         }
 
+    }
+
+    /**
+     * 设置产品销量和评论数量
+     * @param product
+     */
+    @Override
+    public void setSaleAndReviewNumber(Product product) {
+        int saleCount = orderItemService.getSaleCount(product.getId());
+        int reviewCount = reviewService.getCount(product.getId());
+        product.setSaleCount(saleCount);
+        product.setReviewCount(reviewCount);
+    }
+
+    @Override
+    public void setSaleAndReviewNumber(List<Product> products) {
+        for(Product product : products)
+            setSaleAndReviewNumber(product);
     }
 }
