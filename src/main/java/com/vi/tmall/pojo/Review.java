@@ -13,6 +13,9 @@ public class Review {
 
     private Date creaeteDate;
 
+    //增加非数据库字段
+    private User user;
+
     public Integer getId() {
         return id;
     }
@@ -51,5 +54,13 @@ public class Review {
 
     public void setCreaeteDate(Date creaeteDate) {
         this.creaeteDate = creaeteDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
