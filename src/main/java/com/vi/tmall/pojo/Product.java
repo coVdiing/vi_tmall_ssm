@@ -1,6 +1,7 @@
 package com.vi.tmall.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Product {
     private Integer id;
@@ -22,6 +23,14 @@ public class Product {
     private Category category;
     //添加非数据库字段，产品对应的图片对象
     private ProductImage firstProductImage;
+    //添加非数据库字段，单个图片集合
+    private List<ProductImage> productSingleImages;
+    //添加非数据库字段，详情图片集合
+    private List<ProductImage> productDetailImages;
+    //销量
+    private int saleCount;
+    //累计评价数量
+    private int reviewCount;
 
     public Integer getId() {
         return id;
@@ -102,5 +111,36 @@ public class Product {
 	public void setFirstProductImage(ProductImage firstProductImage) {
 		this.firstProductImage = firstProductImage;
 	}
-       
+
+    public List<ProductImage> getProductSingleImages() {
+        return productSingleImages;
+    }
+
+    public void setProductSingleImages(List<ProductImage> productSingleImages) {
+        this.productSingleImages = productSingleImages;
+    }
+
+    public List<ProductImage> getProductDetailImages() {
+        return productDetailImages;
+    }
+
+    public void setProductDetailImages(List<ProductImage> productDetailImages) {
+        this.productDetailImages = productDetailImages;
+    }
+
+    public int getSaleCount() {
+        return saleCount;
+    }
+
+    public void setSaleCount(int saleCount) {
+        this.saleCount = saleCount;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
+    }
 }
