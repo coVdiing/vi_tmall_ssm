@@ -6,7 +6,7 @@
   Time: 15:16
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE html>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false"%>
 
