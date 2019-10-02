@@ -11,7 +11,7 @@ public class OrderItem {
 
     private Integer number;
     
-    //增加一个非数据库字段product
+    //澧炲姞闈炴暟鎹簱瀛楁锛屽搴旂殑product瀵硅薄
     private Product product;
     
     public Integer getId() {
