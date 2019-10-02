@@ -11,7 +11,7 @@ public class Review {
 
     private Integer pid;
 
-    private Date creaeteDate;
+    private Date createDate;
 
     //增加非数据库字段
     private User user;
@@ -48,12 +48,12 @@ public class Review {
         this.pid = pid;
     }
 
-    public Date getCreaeteDate() {
-        return creaeteDate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreaeteDate(Date creaeteDate) {
-        this.creaeteDate = creaeteDate;
+    public void setCreaetDate(Date creaeteDate) {
+        this.createDate = creaeteDate;
     }
 
     public User getUser() {
