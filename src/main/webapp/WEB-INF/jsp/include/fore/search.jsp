@@ -7,13 +7,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" isELIgnored="false" pageEncoding="UTF-8" %>
+<script>
+$(function(){
+   $.ajax({
+       type:"post",
+       url:"randomShowCategory",
+       success:function(result){
+           $("div input").val(result);
+           $("div input").css("color","#CCCCCC");
+       }
+   });
+});
+
+</script>
+
 <a href="${contextPath}">
     <img id="logo" src="img/site/logo.gif" class="logo">
 </a>
 
 <form action="foresearch" method="post">
     <div class="searchDiv">
-        <input name="keyword" type="text" placeholder="时尚男鞋 太阳镜 ">
+        <input name="keyword" type="text" >
         <button type="submit" class="searchButton">搜索</button>
         <div class="searchBelow">
             <c:forEach items="${cs}" var="c" varStatus="st">
