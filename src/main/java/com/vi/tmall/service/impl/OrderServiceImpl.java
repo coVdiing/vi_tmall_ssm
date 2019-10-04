@@ -2,14 +2,11 @@ package com.vi.tmall.service.impl;
 
 import java.util.List;
 
+import com.vi.tmall.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vi.tmall.mapper.OrderMapper;
-import com.vi.tmall.pojo.Order;
-import com.vi.tmall.pojo.OrderExample;
-import com.vi.tmall.pojo.OrderItem;
-import com.vi.tmall.pojo.User;
 import com.vi.tmall.service.OrderItemService;
 import com.vi.tmall.service.OrderService;
 import com.vi.tmall.service.UserService;
