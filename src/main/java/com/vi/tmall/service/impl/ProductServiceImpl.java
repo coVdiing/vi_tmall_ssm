@@ -47,10 +47,10 @@ public class ProductServiceImpl implements ProductService {
         Product product = productMapper.selectByPrimaryKey(id);
         int cid = product.getCid();
         Category category = categoryService.get(cid);
-        //System.out.println("调试cid===>" + cid);
-       // System.out.println("调试category====>" + category.getName());
         product.setCategory(category);
         setFirstProductImage(product);
+        //设置销量和评论数量
+        setSaleAndReviewNumber(product);
         return product;
     }
 
@@ -68,6 +68,8 @@ public class ProductServiceImpl implements ProductService {
         setFirstProductImage(list);
         for (Product product : list)
             product.setCategory(category);
+        //设置销量和评价数量
+        setSaleAndReviewNumber(list);
         return list;
     }
 
@@ -90,7 +92,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     *  给product对象填充category对象
+     *  给category对象填充product对象
      *
      * @param category
      */
@@ -149,5 +151,19 @@ public class ProductServiceImpl implements ProductService {
     public void setSaleAndReviewNumber(List<Product> products) {
         for(Product product : products)
             setSaleAndReviewNumber(product);
+    }
+
+    /**
+     * 根据关键字查询商品
+     * @param keyword 前端传入的关键字
+     * @return 商品集合
+     */
+    public List<Product> search(String keyword) {
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andNameLike("%"+keyword+"%");
+        productExample.setOrderByClause("id desc");
+        List result = productMapper.selectByExample(productExample);
+        setFirstProductImage(result);
+        return result;
     }
 }
