@@ -76,4 +76,20 @@ public class OrderItemServiceImpl implements OrderItemService{
 		return salecount;
 	}
 
+	/**
+	 * 根据用户id获取对应的订单项集合
+	 * @param uid
+	 * @return
+	 */
+	public List<OrderItem> listByUser(int uid) {
+		OrderItemExample orderItemExample = new OrderItemExample();
+		//查出对应用户id的订单项集合，并且是没有生成订单的 oid is null
+		orderItemExample.createCriteria().andUidEqualTo(uid).andOidIsNull();
+		orderItemExample.setOrderByClause("id desc");
+		List<OrderItem> result = orderItemMapper.selectByExample(orderItemExample);
+		for (OrderItem orderItem : result) {
+			fill(orderItem);
+		}
+		return result;
+	}
 }

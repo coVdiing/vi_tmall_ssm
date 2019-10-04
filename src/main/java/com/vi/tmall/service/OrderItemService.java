@@ -15,4 +15,6 @@ public interface OrderItemService {
 	void fill(OrderItem orderItem);
 	//根据产品获取销量
 	int getSaleCount(int pid);
+	//根据用户id获取订单项集合
+	List<OrderItem> listByUser(int uid);
 }
