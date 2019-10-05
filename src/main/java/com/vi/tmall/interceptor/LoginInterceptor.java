@@ -29,7 +29,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                 "category",
                 "search"};
         uri = uri.substring(contextPath.length(),uri.length());
-        if(uri.startsWith("/fore")) {
             String method = uri.substring(5,uri.length());
             if(!Arrays.asList(noNeedAuthPage).contains(method)) {
                 //如果uri不在不需要登录的页面范围内,判断登录状态
@@ -39,7 +38,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                     return false;
                 }
             }
-        }
         return true;
     }
 
