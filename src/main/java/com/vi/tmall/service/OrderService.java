@@ -3,6 +3,7 @@ package com.vi.tmall.service;
 import java.util.List;
 
 import com.vi.tmall.pojo.Order;
+import com.vi.tmall.pojo.OrderItem;
 
 public interface OrderService {
 	String waitPay = "waitPay";
@@ -20,4 +21,6 @@ public interface OrderService {
 	List<Order> list();
 	//在Order中填充OrderItem对象集合
 	void fill(Order order);
+	//订单结算时，新增订单
+	float add(Order order, List<OrderItem> orderItems);
 }

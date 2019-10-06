@@ -10,6 +10,8 @@ import com.vi.tmall.mapper.OrderMapper;
 import com.vi.tmall.service.OrderItemService;
 import com.vi.tmall.service.OrderService;
 import com.vi.tmall.service.UserService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -73,6 +75,19 @@ public class OrderServiceImpl implements OrderService {
 		order.setTotalNumber(totalNumber);
 	}
 
-
-
+	@Transactional(propagation= Propagation.REQUIRED,rollbackForClassName = "Exception")
+	@Override
+	public float add(Order order, List<OrderItem> orderItems) {
+		add(order);
+		float total = 0;
+		if (false) {
+			throw new RuntimeException();
+		}
+		for (OrderItem orderItem : orderItems) {
+			orderItem.setOid(order.getId());
+			orderItemService.update(orderItem);
+			total+=orderItem.getNumber()*orderItem.getProduct().getPromotePrice();
+		}
+		return total;
+	}
 }
