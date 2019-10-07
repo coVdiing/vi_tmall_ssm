@@ -46,6 +46,20 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	/**
+	 * 根据用户名和密码查找User
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	@Override
+	public User get(String name, String password) {
+		UserExample userExample = new UserExample();
+		userExample.createCriteria().andNameEqualTo(name).andPasswordEqualTo(password);
+		List<User> users = userMapper.selectByExample(userExample);
+		return users.size()==0?null:users.get(0);
+	}
+
 	@Override
 	public User get(int id) {
 		return userMapper.selectByPrimaryKey(id);
