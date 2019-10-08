@@ -37,6 +37,11 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewMapper.selectByPrimaryKey(id);
     }
 
+    /**
+     * 给review对象设置对应的user对象，用于评论页
+     * @param pid 对应的product id
+     * @return
+     */
     @Override
     public List<Review> list(int pid) {
         ReviewExample reviewExample = new ReviewExample();
