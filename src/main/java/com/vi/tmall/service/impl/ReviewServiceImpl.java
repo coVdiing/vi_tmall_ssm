@@ -1,13 +1,17 @@
 package com.vi.tmall.service.impl;
 
 import com.vi.tmall.mapper.ReviewMapper;
+import com.vi.tmall.pojo.Order;
 import com.vi.tmall.pojo.Review;
 import com.vi.tmall.pojo.ReviewExample;
 import com.vi.tmall.pojo.User;
+import com.vi.tmall.service.OrderService;
 import com.vi.tmall.service.ReviewService;
 import com.vi.tmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +21,9 @@ public class ReviewServiceImpl implements ReviewService {
     ReviewMapper reviewMapper;
     @Autowired
     UserService userService;
+    @Autowired
+    OrderService orderService;
+
     @Override
     public void add(Review review) {
         reviewMapper.insert(review);
@@ -66,5 +73,15 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public int getCount(int pid) {
         return list(pid).size();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED,rollbackForClassName = "Exception")
+    @Override
+    public void add(Review review, Order order) {
+        orderService.update(order);
+        if(false) {
+            throw new RuntimeException();
+        }
+        reviewMapper.insert(review);
     }
 }
