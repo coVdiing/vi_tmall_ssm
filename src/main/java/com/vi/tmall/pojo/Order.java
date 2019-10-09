@@ -1,10 +1,13 @@
 package com.vi.tmall.pojo;
 
+import com.vi.tmall.service.OrderService;
+
 import java.util.Date;
 import java.util.List;
 
-import com.vi.tmall.service.OrderService;
-
+/**
+ * 订单类
+ */
 public class Order {
     private Integer id;
 
@@ -175,8 +178,11 @@ public class Order {
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
-	
-	//�ж϶���״̬
+
+    /**
+     * 订单状态描述
+     * @return
+     */
 	public String getStatusDesc() {
 		String desc = "";
 		switch(status) {
