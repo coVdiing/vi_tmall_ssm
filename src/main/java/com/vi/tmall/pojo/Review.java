@@ -52,7 +52,7 @@ public class Review {
         return createDate;
     }
 
-    public void setCreaetDate(Date creaeteDate) {
+    public void setCreateDate(Date creaeteDate) {
         this.createDate = creaeteDate;
     }
 

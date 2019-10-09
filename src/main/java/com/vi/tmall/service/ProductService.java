@@ -1,9 +1,9 @@
 package com.vi.tmall.service;
 
-import java.util.List;
-
 import com.vi.tmall.pojo.Category;
 import com.vi.tmall.pojo.Product;
+
+import java.util.List;
 
 public interface ProductService {
     //增删改查
@@ -13,8 +13,18 @@ public interface ProductService {
 
     void update(Product product);
 
+    /**
+     * 填充过销量和评论数量，分类对象，图片对象的product
+     * @param id
+     * @return
+     */
     Product get(int id);
 
+    /**
+     * 填充过销量和评论数量，分类对象，图片对象的product集合
+     * @param cid
+     * @return
+     */
     List<Product> list(int cid);
 
     void setFirstProductImage(Product p);
