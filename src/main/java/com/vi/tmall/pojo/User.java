@@ -32,7 +32,7 @@ public class User {
     }
 
     //在显示评价者的时候进行匿名显示
-    public String getAnonymouseName(){
+    public  String getAnonymouseName(){
         if(null==name)
             return null;
         if(name.length() <= 1){
@@ -41,10 +41,11 @@ public class User {
         if(name.length()==2) {
             return name.substring(0,1)+"*";
         }
-        char[] chars = name.toCharArray();
-        for(int i = 1; i < chars.length - 1 ; i++){
-            chars[i] = '*';
-        }
-        return chars.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append(name.charAt(0)+"");
+        for(int i = 0;i < name.length() - 2; i++)
+            sb.append("*");
+        sb.append(name.charAt(name.length()-1));
+        return sb.toString();
     }
 }
