@@ -1,6 +1,5 @@
 package com.vi.tmall.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.vi.tmall.comparator.*;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
@@ -379,6 +377,123 @@ public class ForeController {
         List<OrderItem> orderItems =(List) session.getAttribute("orderItems");
         float total = orderService.add(order, orderItems);
         return "redirect:forealipay?oid="+order.getId()+"&total="+total;
+    }
+
+    /**
+     * 修改已支付订单状态
+     * @param oid 前端传入的order id
+     * @param total 前端传入的order 总价格
+     * @param model 传递order对象到下个页面
+     * @return 跳转到支付成功页面
+     */
+    @RequestMapping("forepayed")
+    public String payed(int oid, float total, Model model) {
+        Order order = orderService.get(oid);
+        order.setPayDate(new Date());
+        order.setStatus(OrderService.waitDelivery);
+        orderService.update(order);
+        //预计支付后三天可以收货
+        Date date = new Date();
+        long time = System.currentTimeMillis()+3*24*60*60*1000;
+        date.setTime(time);
+        model.addAttribute("order", order);
+        model.addAttribute("receiveTime",date);
+        return "fore/payed";
+    }
+
+    /**
+     * 展示订单数据
+     * @param session 取出用户信息
+     * @param model 传递订单项集合
+     * @return 跳转到订单页
+     */
+    @RequestMapping("forebought")
+    public String bought(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        List<Order> orders = (List) orderService.list(user.getId(),OrderService.delete);
+        model.addAttribute("orders", orders);
+        return "fore/bought";
+    }
+
+    /**
+     *  在我的订单页点击确认收货，跳转到confirmPay.jsp
+     * @param oid order id，从前端传入
+     * @param model 传递参数到jsp页面
+     * @return
+     */
+    @RequestMapping("foreconfirmPay")
+    public String confirmPay(int oid, Model model) {
+        Order order = orderService.get(oid);
+        model.addAttribute("order", order);
+        return "fore/confirmPay";
+    }
+
+    /**
+     * 确认收货成功
+     * @param oid 接收前台传入的order id
+     * @return 跳转到orderConfirm.jsp页面
+     */
+    @RequestMapping("foreorderConfirmed")
+    public String orderConfirm(int oid) {
+        Order order = orderService.get(oid);
+        order.setStatus(OrderService.waitReview);
+        orderService.update(order);
+        return "redirect:orderConfirmPage";
+    }
+
+    /**
+     * 修改订单状态为删除
+     * @param order
+     * @return 处理结果json字符串
+     */
+    @RequestMapping("foredeleteOrder")
+    @ResponseBody
+    public String deleteOrder(Order order) {
+        order.setStatus(OrderService.delete);
+        orderService.update(order);
+        return "success";
+    }
+
+    /**
+     * 跳转到评价产品页
+     * @param oid 前端传入的order id
+     * @param model 传递参数到下个页面
+     * @return 跳转到review.jsp
+     */
+    @RequestMapping("forereview")
+    public String review( Model model,int oid) {
+        Order o = orderService.get(oid);
+        Product p = o.getOrderItems().get(0).getProduct();
+        List<Review> reviews = reviewService.list(p.getId());
+        productService.setSaleAndReviewNumber(p);
+        model.addAttribute("p", p);
+        model.addAttribute("o", o);
+        model.addAttribute("reviews", reviews);
+        return "fore/review";
+    }
+
+    /**
+     * 提交评论
+     * @param oid 从上个页面传递的order id
+     * @param pid 上个页面传递的product id
+     * @param model 用于传递参数
+     * @param session 获取user
+     * @return 提交评论以后查看评论页
+     */
+    @RequestMapping("foredoreview")
+    public String doreview(Model model, HttpSession session, @RequestParam("oid") int oid, @RequestParam("pid") int pid, String content) {
+        Order o = orderService.get(oid);
+        o.setStatus(OrderService.finish);
+        Product p = productService.get(pid);
+        content = HtmlUtils.htmlEscape(content);
+        User user =(User)  session.getAttribute("user");
+        Review review = new Review();
+        review.setContent(content);
+        review.setPid(pid);
+        review.setCreateDate(new Date());
+        review.setUid(user.getId());
+        reviewService.add(review,o);
+        return "redirect:forereview?oid="+oid+"&showonly=true";
     }
 
     /**
