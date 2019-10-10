@@ -8,13 +8,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <script>
     function showProductsAsideCategorys(cid) {
-        console.log("调试代码:3");
         $("div.eachCategory[cid=" + cid + "]").css("background-color", "white");
         $("div.eachCategory[cid=" + cid + "] a").css("color", "#87CEFA");
-        console.log("调试代码:4");
-        console.log("cid=",cid);
         $("div.productsAsideCategorys[cid=" + cid + "]").show();
-        console.log("调试代码:5");
     }
 
     function hideProductsAsideCategorys(cid) {

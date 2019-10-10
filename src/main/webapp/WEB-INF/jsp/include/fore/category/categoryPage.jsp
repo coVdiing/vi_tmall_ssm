@@ -6,7 +6,9 @@
 <title>模仿X猫官网-${category.name}</title>
 <div id="category">
     <div class="categoryPageDiv">
-        <%@ include file="sortBar.jsp"%>
+        <div class="sortBarDiv" style="margin-left:30px;">
+            <%@ include file="sortBar.jsp"%>
+        </div>
         <%@ include file="productByCategory.jsp"%>
     </div>
 </div>

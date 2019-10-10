@@ -16,29 +16,22 @@
             <td  <c:if test="${'all'==param.sort || empty param.sort}">class="grayColumn"</c:if>>
                <a href="?cid=${category.id}&sort=all">综合<span class="glyphicon glyphicon-arrow-down"></span></a>
             </td>
-            <td  <c:if test="${'review'==param.sort || empty param.sort}">class="grayColumn"</c:if>>
+            <td  <c:if test="${'review'==param.sort }">class="grayColumn"</c:if>>
                 <a href="?cid=${category.id}&sort=review">人气<span class="glyphicon glyphicon-arrow-down"></span></a>
             </td>
-            <td  <c:if test="${'date'==param.sort || empty param.sort}">class="grayColumn"</c:if>>
+            <td  <c:if test="${'date'==param.sort }">class="grayColumn"</c:if>>
                 <a href="?cid=${category.id}&sort=date">新品<span class="glyphicon glyphicon-arrow-down"></span></a>
             </td>
-            <td  <c:if test="${'saleCount'==param.sort || empty param.sort}">class="grayColumn"</c:if>>
+            <td  <c:if test="${'saleCount'==param.sort }">class="grayColumn"</c:if>>
                 <a href="?cid=${category.id}&sort=saleCount">销量<span class="glyphicon glyphicon-arrow-down"></span></a>
             </td>
-            <td  <c:if test="${'priceAsc'==param.sort || empty param.sort}">class="grayColumn"</c:if>>
+            <td  <c:if test="${'priceAsc'==param.sort }">class="grayColumn"</c:if>>
                 <a href="?cid=${category.id}&sort=priceAsc">价格<span class="glyphicon glyphicon-arrow-up"></span></a>
             </td>
-            <td  <c:if test="${'priceDesc'==param.sort || empty param.sort}">class="grayColumn"</c:if>>
+            <td  <c:if test="${'priceDesc'==param.sort }">class="grayColumn"</c:if>>
                 <a href="?cid=${category.id}&sort=priceDesc">价格<span class="glyphicon glyphicon-arrow-down"></span></a>
             </td>
         </tr>
     </table>
 
-    <table class="categorySortBarTable">
-        <tr>
-            <td><input class="sortBarPrice beginPrice" type="text" placeholder="请输入"></td>
-            <td class="grayColumn priceMiddleColumn">-</td>
-            <td><input class="sortBarPrice endPrice" type="text" placeholder="请输入"></td>
-        </tr>
-    </table>
 </div>
