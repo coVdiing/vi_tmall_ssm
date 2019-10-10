@@ -46,22 +46,26 @@
                     if ("success" == result) {
                         var id = ${product.id};
                         var num = $(".productNumberSetting").val();
-                        var addCartPage = "forecart";
-                        $.get(
-                            addCartPage,
-                            {"pid": pid, "num": num},
-                            function (result) {
+                        var addCartPage = "foreaddCart";
+                        $.ajax({
+                            type:"get",
+                            url:addCartPage,
+                            data:{"pid": id, "num": num},
+                            success:function (result) {
                                 if ("success" == result) {
                                     $(".addCartButton").html("已加入购物车");
                                     $(".addCartButton").attr("disabled", "disabled");
                                     $(".addCartButton").css("background", "lightgray");
                                     $(".addCartButton").css("color", "black");
+                                    var cartNumber = parseInt(${cartTotalItemNumber})+parseInt(num);
+                                    $("span strong").html(cartNumber);
                                 } else {
 
                                 }
 
                             }
-                        )
+                        });
+
                     } else {
                         $("#loginModal").modal("show");
                     }
@@ -128,7 +132,6 @@
                 img = new Image();
                 img.src = bigImageURL;
                 img.onload = function () {
-                    console.log(bigImageURL);
                     $("div.img4load").append($(img));
                 }
             });
