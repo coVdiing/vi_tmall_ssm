@@ -93,11 +93,13 @@
     .registerBtn {
         width:200px;
         height: 30px;
+        position:absolute;
         background-color: #C40000;
         border:1px solid transparent;
         color:white;
         cursor: pointer;
-        margin:0px auto;
+        left:135px;
+        top:70px;
         padding:0px;
         font-size: 16px;
         font-weight: bold;
@@ -122,11 +124,12 @@
                 <span class="registerTableLeftTD">登录密码</span>
                 <input type="password" id="password" name="password" placeholder="设置你的登录密码"></input>
             </div>
-           <div>
+           <div style="position:relative;">
                <span class="registerTableLeftTD">密码确认</span>
-               <input type="password" id="repeatPassword" name="repeatpassword" placeholder="请再次输入你的密码" ></input>
+               <input  type="password" id="repeatPassword" name="repeatpassword" placeholder="请再次输入你的密码" ></input>
+               <button id="registerBtn" type="submit" class="registerBtn" >提交</button>
            </div>
-            <button id="registerBtn" type="submit" class="registerBtn" >提交</button>
+
         </div>
 
     </div>

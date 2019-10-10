@@ -3,11 +3,10 @@
 <script>
     $(function(){
         $.ajax({
-            type:"post",
+            type:"get",
             url:"randomShowCategory",
             success:function(result){
-                $("div input").val(result);
-                $("div input").css("color","#CCCCCC");
+                $("#searchInput").attr("placeholder",result);
             }
         });
     });
@@ -20,13 +19,11 @@
 
     <form action="foresearch" method="post">
         <div class="simpleSearchDiv pull-right">
-            <input type="text" name="keyword" >
+            <input type="text" name="keyword" id="searchInput" >
             <button type="submit" class="searchButton">搜天猫</button>
-        </div>
-
-    <div class="searchBelow">
-        <c:forEach items="${categories}" var="category" varStatus="st">
-            <c:if test="${st.count >= 8 and st.count <= 11}">
+            <div class="searchBelow">
+                <c:forEach items="${cs}" var="category" varStatus="st">
+                    <c:if test="${st.count >= 8 and st.count <= 11}">
                     <span>
                         <a href="forecategory?cid=${category.id}">
                                 ${category.name}
@@ -35,9 +32,12 @@
                             <span>|</span>
                         </c:if>
                     </span>
-            </c:if>
-        </c:forEach>
-    </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+        </div>
+
+
     </form>
     <div style="clear:both"></div>
 </div>

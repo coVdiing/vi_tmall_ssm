@@ -10,11 +10,10 @@
 <script>
 $(function(){
    $.ajax({
-       type:"post",
+       type:"get",
        url:"randomShowCategory",
        success:function(result){
-           $("div input").val(result);
-           $("div input").css("color","#CCCCCC");
+           $("#searchInput").attr("placeholder",result);
        }
    });
 });
@@ -27,14 +26,14 @@ $(function(){
 
 <form action="foresearch" method="post">
     <div class="searchDiv">
-        <input name="keyword" type="text" >
+        <input name="keyword" type="text" id="searchInput" >
         <button type="submit" class="searchButton">搜索</button>
         <div class="searchBelow">
-            <c:forEach items="${cs}" var="c" varStatus="st">
+            <c:forEach items="${cs}" var="category" varStatus="st">
                 <c:if test="${st.count>=5 and st.count <= 8}">
                     <span>
-                        <a href="forecategory?cid=${cid}">
-                            ${c.name}
+                        <a href="forecategory?cid=${category.id}">
+                            ${category.name}
                         </a>
                         <c:if test="${st.count != 8}">
                             <span>|</span>
