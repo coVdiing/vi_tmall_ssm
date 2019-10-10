@@ -14,9 +14,8 @@
 		$("#addCategoryForm").submit(function() {
 			if (!checkEmpty("name", "分类名称"))
 				return false;
-			if (!checkEmpty("categoryPic", "分类图片"))
-				return false;
-			return true;
+			return checkEmpty("categoryPic", "分类图片");
+
 		});
 		
 		
@@ -47,14 +46,14 @@
 						<td>${item.id}</td>
 						<td>${item.name}</td>
 						<td>
-							<image src="img/category/${item.id}.jpg" height=40px />
+							<img src="img/category/${item.id}.jpg" height=40px alt="" />
 						</td>
-						<td><a href="admin_property_list?id=${item.id}"><span class="glyphicon glyphicon-th-list"></span></a></td>
-						<td><a href="admin_product_list?cid=${item.id}"><span
+						<td align="center"><a href="admin_property_list?id=${item.id}"><span class="glyphicon glyphicon-th-list"></span></a></td>
+						<td align="center"><a href="admin_product_list?cid=${item.id}"><span
 								class="glyphicon glyphicon-shopping-cart"></span></a></td>
-						<td><a href="admin_category_edit?id=${item.id}"><span
+						<td align="center"><a href="admin_category_edit?id=${item.id}"><span
 								class="glyphicon glyphicon-th-list"></span></a></td>
-						<td><a deleteLink="true"
+						<td align="center"><a deleteLink="true"
 							href="admin_category_delete?id=${item.id}"><span
 								class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
