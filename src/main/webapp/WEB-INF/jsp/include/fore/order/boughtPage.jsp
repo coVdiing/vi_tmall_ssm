@@ -138,9 +138,8 @@
                                                                                       value="${oi.product.promotePrice}"
                                                                                       minFractionDigits="2"/></div>
                         </td>
-                        <td valign="middle">
-                            class="orderListItemNumberTD orderItemOrderInfoPartTD" width="100px">
-                            <span class="orderListItemNumber">${oi.number}</span>
+                        <td class="orderItemProductInfoPartTD" width="100px" align="center">
+                            <span>${oi.number}</span>
                         </td>
                         <c:if test="${st.count==1}">
                             <td valign="middle" rowspan="${fn:length(o.orderItems)}" width="120px"
