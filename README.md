@@ -1,4 +1,3 @@
 # vi_tmall_ssm
-ssm商城
+## ssm模仿天猫商城(step by step)
 
-记录下自己学习的过程，一步一步，脚踏实地
